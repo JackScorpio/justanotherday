@@ -1,38 +1,127 @@
+body {
+  /* background: url("https://source.unsplash.com/user/martberrios") no-repeat
+    center center fixed; */
+  background: url(./bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  font-size: 22px;
+  color: brown;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  /* margin-top: 50px;
+  margin-bottom: 50px; */
+  /* padding-top: 30px;
+  padding-bottom: 30px; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.flex-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+li {
+  list-style-type: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card {
+  opacity: 0.8;
+}
+
+.deleteIcon {
+  position: absolute;
+  right: 0;
+}
+
+.ui.checkbox {
+  font-size: 20px;
+}
+
+.timer {
+  display: inline-flex;
+  margin-right: 10px;
+}
+
+.functionArea {
+  display: inline-flex;
+}
+
+#addTaskInput {
+  margin-right: 20px;
+}
+
+.subTodoList {
+  text-align: left;
+  margin: 5px 50px;
+  font-size: 16px;
+}
+.subTaskUndone {
+  background-color: rgb(236, 252, 252);
+  margin: 3px;
+}
+
+.subTaskDone {
+  background-color: rgb(241, 248, 248);
+  margin: 3px;
+  text-decoration: line-through;
+}
+
+.ui.mini.button {
+  transform: scale(0.7);
+  position: absolute;
+  right: 15px;
+  padding: 0.6em;
+}
+
+#subtasklabel {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#headerLabel {
+  cursor: pointer;
+}
+
+#subtaskcheckbox {
+  visibility: hidden;
+}
+
+.startContainer {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.taskstatusbar {
+  font-weight: 700;
+}
+
+.headerBar {
+  background-color: rgb(255, 255, 255);
+}
+
+.tasks {
+  margin: 2rem;
+}
+
+.functionArea {
+  justify-content: center;
+  height: 3rem;
+  margin-bottom: 2rem;
+}
+
+.addtaskArea {
+  margin-right: 2rem;
+}
+
+.widgetsContainer {
+  margin-top: auto;
+  margin-bottom: auto;
 }
