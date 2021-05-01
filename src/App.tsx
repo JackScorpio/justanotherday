@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useState } from "react";
 import Timer from "./Components/Timer";
 import Clock from "./Components/Clock";
+import TodoList from "./Components/Todolist";
 
 function App() {
   // Notification.requestPermission();
@@ -10,7 +11,7 @@ function App() {
   return (
     <div className='App'>
       <div className='ui stackable three column padded grid headerBar'>
-        <div className='column'>
+        <div className='column clockContainer'>
           <Clock />
         </div>
         <div className='column startContainer'>
@@ -66,6 +67,7 @@ function App() {
           </div>
         </div>
       </div>
+      <TodoList />
     </div>
   );
 }

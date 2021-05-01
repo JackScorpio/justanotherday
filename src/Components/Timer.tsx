@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 const Timer = () => {
+  Notification.requestPermission();
   let initialMinute = 45;
   let initialSeconds = 0;
   const [minutes, setMinutes] = useState(initialMinute);
