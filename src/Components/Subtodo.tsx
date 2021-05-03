@@ -25,7 +25,8 @@ const Subtodo: React.FC<Props> = ({ task, tasks, setTasks }) => {
   useEffect(() => {
     const newtasks = JSON.stringify(tasks);
     localStorage.setItem("tasks", newtasks);
-  }, [JSON.stringify(subTasks)]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tasks, JSON.stringify(subTasks)]);
 
   const addSubTask = (e: any, task: any) => {
     e.preventDefault();
