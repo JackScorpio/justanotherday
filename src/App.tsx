@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Timer from "./Components/Timer";
 import Clock from "./Components/Clock";
 import TodoList from "./Components/Todolist";
+import YoutubeApp from "./Components/video_search/youtube_search_App";
 
 function App() {
   // Notification.requestPermission();
@@ -68,6 +69,7 @@ function App() {
         </div>
       </div>
       <TodoList />
+      <YoutubeApp />
     </div>
   );
 }
