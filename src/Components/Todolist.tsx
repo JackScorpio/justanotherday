@@ -59,6 +59,7 @@ function TodoList() {
               if (subTask.completed === false) {
                 subTask.completed = true;
               }
+              return task;
             });
           }
         } else {
