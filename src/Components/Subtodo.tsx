@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from "react";
 import "../button.css";
 interface Props {
-  task: any;
-  tasks: any;
-  setTask: React.Dispatch<any>;
-  setTasks: React.Dispatch<any>;
+  task: Task;
+  tasks: Task[];
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+}
+interface Task {
+  id: number;
+  text: string;
+  completed: boolean;
+  subTasks: Subtask[];
 }
 
-const Subtodo: React.FC<Props> = ({ task, tasks, setTask, setTasks }) => {
+interface Subtask {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+
+const Subtodo: React.FC<Props> = ({ task, tasks, setTasks }) => {
   const [subTasks, setsubTasks] = useState(task.subTasks);
   const [subTask, setsubTask] = useState("");
 
@@ -23,13 +34,15 @@ const Subtodo: React.FC<Props> = ({ task, tasks, setTask, setTasks }) => {
       text: subTask,
       completed: false,
     };
-    const newSubTasks = task.subTasks.push(newSubTask);
 
-    task.completed = false;
-    let updatedTasks = [...tasks];
-    setsubTasks(newSubTasks);
-    setsubTask("");
-    setTasks(updatedTasks);
+    if (newSubTask.text.trim() !== "") {
+      const newSubTasks = task.subTasks.push(newSubTask);
+
+      setsubTasks(newSubTasks);
+      setsubTask("");
+      task.completed = false;
+      setTasks([...tasks]);
+    }
   };
 
   const deleteSubTask = (task: any, id: number) => {
@@ -49,10 +62,9 @@ const Subtodo: React.FC<Props> = ({ task, tasks, setTask, setTasks }) => {
       task.subTasks[targetIndex].completed = false;
       task.completed = false;
     }
-    let updatedSubtasks = [...task.subTasks];
-    let updatedTasks = [...tasks];
-    setsubTasks(updatedSubtasks);
-    setTasks(updatedTasks);
+
+    setsubTasks([...task.subTasks]);
+    setTasks([...tasks]);
   }
 
   return (

@@ -8,7 +8,7 @@ function TodoList() {
     id: number;
     text: string;
     completed: boolean;
-    subTasks: any;
+    subTasks: Subtask[];
   }
 
   interface Subtask {
@@ -145,12 +145,7 @@ function TodoList() {
                     </div>
                   </div>
 
-                  <Subtodo
-                    task={task}
-                    tasks={tasks}
-                    setTask={setTask}
-                    setTasks={setTasks}
-                  />
+                  <Subtodo task={task} tasks={tasks} setTasks={setTasks} />
 
                   {task.completed === false && (
                     <div className='ui negative message'>
