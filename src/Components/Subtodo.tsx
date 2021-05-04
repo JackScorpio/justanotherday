@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "../button.css";
-
 interface Task {
   id: string;
   text: string;
   completed: boolean;
   subTasks: Subtask[];
 }
-
 interface Subtask {
   id: string;
   text: string;
   completed: boolean;
 }
-
 interface Props {
   task: Task;
   tasks: Task[];

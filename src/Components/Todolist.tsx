@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../button.css";
 import Subtodo from "./Subtodo";
 import Dropdown from "./Dropdown";
+
 interface Task {
   id: string;
   text: string;
@@ -21,7 +22,6 @@ function TodoList() {
 
   useEffect(() => {
     const jsonget: string | null = localStorage.getItem("tasks");
-
     if (jsonget !== null) {
       const loadedTasks = JSON.parse(jsonget);
       setTasks(loadedTasks);

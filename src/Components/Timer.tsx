@@ -1,7 +1,7 @@
-import React from "react";
 import { useState, useEffect } from "react";
 
 const Timer = () => {
+  // Notification is not supported on IOS device.
   Notification.requestPermission();
   let initialMinute = 45;
   let initialSeconds = 0;
