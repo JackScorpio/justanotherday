@@ -2,23 +2,21 @@ import React, { useState, useEffect } from "react";
 import "../button.css";
 import Subtodo from "./Subtodo";
 import Dropdown from "./Dropdown";
+interface Task {
+  id: string;
+  text: string;
+  completed: boolean;
+  subTasks: Subtask[];
+}
 
+interface Subtask {
+  id: string;
+  text: string;
+  completed: boolean;
+}
 function TodoList() {
-  interface Task {
-    id: number;
-    text: string;
-    completed: boolean;
-    subTasks: Subtask[];
-  }
-
-  interface Subtask {
-    id: number;
-    text: string;
-    completed: boolean;
-  }
-
   const [filter, setFilter] = useState("All");
-  const [tasks, setTasks] = useState<any>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [task, setTask] = useState("");
 
   useEffect(() => {
@@ -37,10 +35,10 @@ function TodoList() {
 
   const addTask = (e: any): void => {
     const newTask: Task = {
-      id: new Date().getTime(),
+      id: new Date().getTime().toString(),
       text: task,
       completed: false,
-      subTasks: [] as any,
+      subTasks: [],
     };
     e.preventDefault();
     if (newTask.text.trim() !== "") {
@@ -49,7 +47,7 @@ function TodoList() {
     }
   };
 
-  function onChange(id: number) {
+  function onChange(id: string) {
     let updatedTasks = [...tasks].map((task) => {
       if (task.id === id) {
         if (task.completed === false) {
@@ -71,21 +69,18 @@ function TodoList() {
     setTasks(updatedTasks);
   }
 
-  function deleteTask(id: number) {
-    // const answer = window.confirm("Delete task?")
-    // if (answer === true) {
+  function deleteTask(id: string) {
     const updatedTasks = [...tasks].filter((task) => task.id !== id);
     setTasks(updatedTasks);
-    // }
   }
 
-  const options = (filter: String) => {
+  const options = (filter: String): any => {
     if (filter === "All") {
       return () => true;
     } else if (filter === "Pending") {
-      return (tasks: any) => !tasks.completed;
+      return (t: Task): any => !t.completed;
     } else if (filter === "Done") {
-      return (tasks: any) => tasks.completed;
+      return (t: Task): any => t.completed;
     }
   };
 
@@ -120,7 +115,7 @@ function TodoList() {
       <div className='ui centered grid taskItems' id='taskItems'>
         {/* Task card */}
         {tasks !== null &&
-          tasks.filter(options(filter)).map((task: any) => (
+          tasks.filter(options(filter)).map((task: Task) => (
             <div key={task.id} className='task' draggable='true'>
               <div className='flex-container'>
                 <div className='ui raised card draggable'>

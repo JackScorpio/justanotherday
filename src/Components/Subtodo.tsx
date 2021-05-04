@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from "react";
 import "../button.css";
-interface Props {
-  task: Task;
-  tasks: Task[];
-  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
-}
+
 interface Task {
-  id: number;
+  id: string;
   text: string;
   completed: boolean;
   subTasks: Subtask[];
 }
 
 interface Subtask {
-  id: number;
+  id: string;
   text: string;
   completed: boolean;
 }
 
+interface Props {
+  task: Task;
+  tasks: Task[];
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+}
+
 const Subtodo: React.FC<Props> = ({ task, tasks, setTasks }) => {
   const [subTasks, setsubTasks] = useState(task.subTasks);
-  const [subTask, setsubTask] = useState("");
+  const [subTaskText, setsubTaskText] = useState<Subtask["text"]>("");
 
   useEffect(() => {
     const newtasks = JSON.stringify(tasks);
@@ -28,34 +30,32 @@ const Subtodo: React.FC<Props> = ({ task, tasks, setTasks }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tasks, JSON.stringify(subTasks)]);
 
-  const addSubTask = (e: any, task: any) => {
+  const addSubTask = (e: any, task: Task) => {
     e.preventDefault();
-    const newSubTask = {
-      id: new Date().getTime(),
-      text: subTask,
+    const newSubTask: Subtask = {
+      id: new Date().getTime().toString(),
+      text: subTaskText,
       completed: false,
     };
-
+    const newSubTasks = task.subTasks.concat(newSubTask);
     if (newSubTask.text.trim() !== "") {
-      const newSubTasks = task.subTasks.push(newSubTask);
-
       setsubTasks(newSubTasks);
-      setsubTask("");
+      setsubTaskText("");
       task.completed = false;
       setTasks([...tasks]);
     }
   };
 
-  const deleteSubTask = (task: any, id: number) => {
+  const deleteSubTask = (task: Task, id: string) => {
     const newSubTasks = task.subTasks.splice(
-      task.subTasks.findIndex((t: any) => t.id === id),
+      task.subTasks.findIndex((t) => t.id === id),
       1
     );
     setsubTasks(newSubTasks);
   };
 
-  function onSubTaskChange(task: any, id: number) {
-    const targetIndex = task.subTasks.findIndex((t: any) => t.id === id);
+  function onSubTaskChange(task: Task, id: string) {
+    const targetIndex = task.subTasks.findIndex((t) => t.id === id);
 
     if (task.subTasks[targetIndex].completed === false) {
       task.subTasks[targetIndex].completed = true;
@@ -66,12 +66,22 @@ const Subtodo: React.FC<Props> = ({ task, tasks, setTasks }) => {
 
     setsubTasks([...task.subTasks]);
     setTasks([...tasks]);
+    console.log(task.subTasks);
+
+    let allFinished = task.subTasks.every((item: Subtask) => {
+      return item.completed === true;
+    });
+    console.log(allFinished);
+    if (allFinished === true) {
+      task.completed = true;
+      setTasks([...tasks]);
+    }
   }
 
   return (
     <div className='subTask-container'>
       <div className='subTodoList'>
-        {task.subTasks.map((subTask: any) => (
+        {task.subTasks.map((subTask: Subtask) => (
           <div key={subTask.id} id='subtask'>
             <div className='ui checkbox'>
               <input
@@ -103,8 +113,8 @@ const Subtodo: React.FC<Props> = ({ task, tasks, setTasks }) => {
             className='subtaskInput'
             type='text'
             maxLength={18}
-            value={subTask}
-            onChange={(e) => setsubTask(e.target.value)}
+            value={subTaskText}
+            onChange={(e) => setsubTaskText(e.target.value)}
             placeholder='Add subtask here..'
           />
         </div>
