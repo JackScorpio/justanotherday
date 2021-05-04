@@ -37,12 +37,12 @@ const Subtodo: React.FC<Props> = ({ task, tasks, setTasks }) => {
       text: subTaskText,
       completed: false,
     };
-    const newSubTasks = task.subTasks.concat(newSubTask);
+
     if (newSubTask.text.trim() !== "") {
-      setsubTasks(newSubTasks);
+      task.subTasks.push(newSubTask);
+      setTasks([...tasks]);
       setsubTaskText("");
       task.completed = false;
-      setTasks([...tasks]);
     }
   };
 
