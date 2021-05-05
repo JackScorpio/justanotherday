@@ -85,7 +85,6 @@ function TodoList() {
   };
 
   return (
-    //  Add task input
     <div className='tasks'>
       <div className='functionArea'>
         <div className='ui stackable centered grid container'>
@@ -103,17 +102,12 @@ function TodoList() {
               </div>
             </form>
           </div>
-
           <div className='filterContainer'>
             <Dropdown filter={filter} onFilterChange={setFilter} />
           </div>
         </div>
       </div>
-
-      {/* All tasks container */}
-
       <div className='ui centered grid taskItems' id='taskItems'>
-        {/* Task card */}
         {tasks !== null &&
           tasks.filter(options(filter)).map((task: Task) => (
             <div key={task.id} className='task' draggable='true'>
@@ -140,9 +134,7 @@ function TodoList() {
                       </h2>
                     </div>
                   </div>
-
                   <Subtodo task={task} tasks={tasks} setTasks={setTasks} />
-
                   {task.completed === false && (
                     <div className='ui negative message'>
                       <div className='taskstatusbar'>This task is pending.</div>

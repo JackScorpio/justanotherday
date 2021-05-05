@@ -53,7 +53,6 @@ const Subtodo: React.FC<Props> = ({ task, tasks, setTasks }) => {
 
   function onSubTaskChange(task: Task, id: string) {
     const targetIndex = task.subTasks.findIndex((t) => t.id === id);
-
     if (task.subTasks[targetIndex].completed === false) {
       task.subTasks[targetIndex].completed = true;
     } else {
@@ -63,12 +62,11 @@ const Subtodo: React.FC<Props> = ({ task, tasks, setTasks }) => {
 
     setsubTasks([...task.subTasks]);
     setTasks([...tasks]);
-    console.log(task.subTasks);
 
     let allFinished = task.subTasks.every((item: Subtask) => {
       return item.completed === true;
     });
-    console.log(allFinished);
+
     if (allFinished === true) {
       task.completed = true;
       setTasks([...tasks]);
