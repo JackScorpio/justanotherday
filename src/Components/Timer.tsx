@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 
 const Timer = () => {
   // Notification is not supported on IOS device.
+
   Notification.requestPermission();
+  const [taskInit, setTaskInit] = useState(false);
   let initialMinute = 45;
   let initialSeconds = 0;
   const [minutes, setMinutes] = useState(initialMinute);
@@ -39,11 +41,34 @@ const Timer = () => {
   });
 
   return (
-    <div className='message'>
-      {minutes === 0 && seconds === 0 ? null : (
-        <h1>
-          Take a rest in: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-        </h1>
+    <div className='column startContainer'>
+      {!taskInit && (
+        <button
+          className='ui big green button'
+          onClick={() => setTaskInit(true)}
+        >
+          Start
+        </button>
+      )}
+      {taskInit && (
+        <button
+          className='ui big red button'
+          onClick={() => setTaskInit(false)}
+        >
+          End
+        </button>
+      )}
+      {taskInit && (
+        <div className='timer'>
+          <div className='message'>
+            {minutes === 0 && seconds === 0 ? null : (
+              <h1>
+                Take a rest in: {minutes}:
+                {seconds < 10 ? `0${seconds}` : seconds}
+              </h1>
+            )}
+          </div>
+        </div>
       )}
     </div>
   );
