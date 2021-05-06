@@ -38,7 +38,7 @@ const Timer = () => {
     return () => {
       clearInterval(myInterval);
     };
-  });
+  }, [seconds, minutes]);
 
   return (
     <div className='column startContainer'>
