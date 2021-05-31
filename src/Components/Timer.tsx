@@ -10,6 +10,13 @@ const Timer = () => {
   const [minutes, setMinutes] = useState(initialMinute);
   const [seconds, setSeconds] = useState(initialSeconds);
   useEffect(() => {
+    if (!taskInit) {
+      setMinutes(45);
+      setSeconds(0);
+    }
+  }, [taskInit]);
+
+  useEffect(() => {
     if (taskInit) {
       let myInterval = setInterval(() => {
         if (seconds > 0) {
@@ -40,39 +47,44 @@ const Timer = () => {
         clearInterval(myInterval);
       };
     }
-    
-  }, [taskInit,minutes, seconds]);
+  }, [taskInit, minutes, seconds]);
 
   return (
     <div className='column startContainer'>
-      {!taskInit && (
-        <button
-          className='ui big green button'
-          onClick={() => setTaskInit(true)}
-        >
-          Start
-        </button>
-      )}
-      {taskInit && (
-        <button
-          className='ui big red button'
-          onClick={() => setTaskInit(false)}
-        >
-          End
-        </button>
-      )}
-      {taskInit && (
-        <div className='timer'>
-          <div className='message'>
-            {minutes === 0 && seconds === 0 ? null : (
-              <h1>
-                Take a rest in: {minutes}:
-                {seconds < 10 ? `0${seconds}` : seconds}
-              </h1>
-            )}
+      <div className='messageContainer'>
+        {taskInit && (
+          <div className='timer'>
+            <div className='message'>
+              {minutes === 0 && seconds === 0 ? null : (
+                <h1>
+                  Take a rest in: {minutes}:
+                  {seconds < 10 ? `0${seconds}` : seconds}
+                </h1>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
+
+      <div className='buttonContainer'>
+        {!taskInit && (
+          <button
+            className='ui big green button mainButton'
+            onClick={() => setTaskInit(true)}
+          >
+            Start
+          </button>
+        )}
+
+        {taskInit && (
+          <button
+            className='ui big red button mainButton'
+            onClick={() => setTaskInit(false)}
+          >
+            End
+          </button>
+        )}
+      </div>
     </div>
   );
 };

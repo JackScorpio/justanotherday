@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className='App'>
-      <div className='ui stackable three column padded grid headerBar'>
+      <div className='ui stackable two column padded grid headerBar'>
         <div className='column clockContainer'>
           <Clock />
         </div>

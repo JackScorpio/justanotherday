@@ -94,9 +94,30 @@ li {
   visibility: hidden;
 }
 
+.headerBar {
+  height: auto;
+}
+.clockContainer {
+  padding: 0.5rem;
+}
 .startContainer {
+  position: relative;
   margin-top: auto;
   margin-bottom: auto;
+  display: flex;
+}
+
+.messageContainer {
+  display: inline-block;
+  width: auto;
+}
+
+.buttonContainer {
+  display: inline-flex;
+}
+
+.mainButton {
+  width: 8rem;
 }
 
 .taskstatusbar {
