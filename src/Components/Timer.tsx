@@ -41,7 +41,7 @@ const Timer = () => {
       };
     }
     
-  }, [taskInit,seconds]);
+  }, [taskInit,minutes, seconds]);
 
   return (
     <div className='column startContainer'>
