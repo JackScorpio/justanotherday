@@ -22,10 +22,20 @@ h1 {
   padding-bottom: 30px; */
 }
 
+.headerLabel {
+  display: flex;
+  max-width: 15rem;
+}
+
 .flex-container {
   display: flex;
   justify-content: center;
   margin: 20px;
+}
+
+.subtask {
+  display: flex;
+  max-width: 25rem;
 }
 
 li {
@@ -61,7 +71,7 @@ li {
 .subTodoList {
   text-align: left;
   margin: 5px 50px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 .subTaskUndone {
   background-color: rgb(236, 252, 252);

@@ -77,7 +77,7 @@ const Subtodo: React.FC<Props> = ({ task, tasks, setTasks }) => {
     <div className='subTask-container'>
       <div className='subTodoList'>
         {task.subTasks.map((subTask: Subtask) => (
-          <div key={subTask.id} id='subtask'>
+          <div key={subTask.id} className='subtask'>
             <div className='ui checkbox'>
               <input
                 type='checkbox'
@@ -103,14 +103,15 @@ const Subtodo: React.FC<Props> = ({ task, tasks, setTasks }) => {
         ))}
       </div>
       <form onSubmit={(e) => addSubTask(e, task)}>
-        <div className='ui input' id='addsubtask'>
+        <div className='ui input addsubtask'>
           <input
             className='subtaskInput'
             type='text'
-            maxLength={18}
+            maxLength={40}
             value={subTaskText}
             onChange={(e) => setsubTaskText(e.target.value)}
             placeholder='Add subtask here..'
+            required
           />
         </div>
       </form>

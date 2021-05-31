@@ -66,7 +66,7 @@ const Timer = () => {
         )}
       </div>
 
-      <div className='buttonContainer'>
+      <div className='buttonContainer' title='Rest n Drink Timer'>
         {!taskInit && (
           <button
             className='ui big green button mainButton'

@@ -92,11 +92,12 @@ function TodoList() {
             <form className='ui form' onSubmit={addTask}>
               <div className='ui action input' id='addTaskInput'>
                 <input
-                  maxLength={30}
+                  maxLength={50}
                   type='text'
                   onChange={(e) => setTask(e.target.value)}
                   value={task}
                   placeholder='Add Todo card..'
+                  required
                 ></input>
                 <button className='ui blue button'>Add</button>
               </div>
@@ -127,7 +128,7 @@ function TodoList() {
                             id={task.id}
                             onChange={() => onChange(task.id)}
                           />
-                          <label id='headerLabel' htmlFor={task.id}>
+                          <label className='headerLabel' htmlFor={task.id}>
                             {task.text}
                           </label>
                         </div>
